@@ -1,0 +1,30 @@
+.todoForm {
+  padding-bottom: 30px;
+
+  .todoInput {
+    width: 290px;
+    background: transparent;
+    padding: 11px 0 11px 16px;
+    border: 2px solid #ffffff;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 400;
+
+    &::placeholder {
+      color: #bdbdbd;
+      font-size: 14px;
+    }
+  }
+
+  .addButton {
+    width: 80px;
+    margin-left: 12px;
+    font-size: 18px;
+    background: #fff;
+    padding: 9px 23px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+}
