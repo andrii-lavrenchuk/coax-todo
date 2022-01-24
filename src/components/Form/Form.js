@@ -21,7 +21,7 @@ export default class Form extends Component {
       return;
     }
 
-    onSubmit(value.trim());
+    onSubmit(value.trim().toLowerCase());
     this.resetForm();
   };
 
