@@ -95,14 +95,14 @@ class App extends Component {
           transition={Zoom}
         />
         <div className={s.container}>
-          <p className={s.text}>All todos: {todos.length} </p>
-          <p className={s.text}>Completed todo: {completedTodosCount}</p>
-          <p className={s.text}>Skipped todo: {skippedTodosCount}</p>
+          <p className={s.text}>All tasks: {todos.length} </p>
+          <p className={s.text}>Completed tasks: {completedTodosCount}</p>
+          <p className={s.text}>Skipped tasks: {skippedTodosCount}</p>
 
           <div className={s.todoContainer}>
             <DateRange />
             {todos.length === 0 ? (
-              <p className={s.text}>Add your first todo</p>
+              <p className={s.text}>Add your first task</p>
             ) : (
               <TodoList
                 todos={todos}
