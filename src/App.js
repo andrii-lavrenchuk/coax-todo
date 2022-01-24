@@ -58,7 +58,7 @@ class App extends Component {
           ? {
               ...todo,
               completed: !todo.completed,
-              skipped: true,
+              skipped: todo.completed,
             }
           : todo,
       ),
@@ -73,9 +73,18 @@ class App extends Component {
     );
   };
 
+  skippedTodoCount = () => {
+    const { todos } = this.state;
+    return todos.reduce(
+      (total, { skipped }) => (skipped ? total + 1 : total),
+      0,
+    );
+  };
+
   render() {
     const { todos } = this.state;
     const completedTodosCount = this.completedTodoCount();
+    const skippedTodosCount = this.skippedTodoCount();
 
     return (
       <>
@@ -88,6 +97,7 @@ class App extends Component {
         <div className={s.container}>
           <p className={s.text}>All todos: {todos.length} </p>
           <p className={s.text}>Completed todo: {completedTodosCount}</p>
+          <p className={s.text}>Skipped todo: {skippedTodosCount}</p>
 
           <div className={s.todoContainer}>
             <DateRange />

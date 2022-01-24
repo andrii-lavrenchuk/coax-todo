@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import s from './Todo.module.scss';
 import IconButton from '../IconButton/IconButton';
 import { ReactComponent as DeleteIcon } from '../../icons/trash.svg';
@@ -12,34 +13,40 @@ const Todo = ({
   text,
   onDeleteTodo,
   skipped,
-}) => (
-  <>
-    <label>
-      <input
-        className={s.input}
-        type="checkbox"
-        checked={completed}
-        onChange={onToggleCompleted}
-      />
+}) => {
+  const classes = classNames(s.cursorPointer, {
+    [s.completed]: completed,
+    [s.skipped]: !completed,
+    [s.initial]: !skipped && !completed,
+  });
 
-      {!completed && !skipped && (
-        <EmptyCheckbox className={s.cursorPointer} width="30" />
-      )}
+  return (
+    <>
+      <label>
+        <input
+          className={s.input}
+          type="checkbox"
+          checked={completed}
+          onChange={onToggleCompleted}
+        />
 
-      {completed && (
-        <CompletedCheckbox className={s.cursorPointer} width="30" />
-      )}
-      {!completed && skipped && (
-        <SkippedCheckbox className={s.cursorPointer} width="30" />
-      )}
-    </label>
-    <p className={s.todolistText}> {text}</p>
+        {!completed && !skipped && (
+          <EmptyCheckbox className={classes} width="30" />
+        )}
 
-    <IconButton onClick={onDeleteTodo}>
-      <DeleteIcon width="25" />
-    </IconButton>
-  </>
-);
+        {completed && <CompletedCheckbox className={classes} width="30" />}
+        {!completed && skipped && (
+          <SkippedCheckbox className={classes} width="30" />
+        )}
+      </label>
+      <p className={s.todolistText}> {text}</p>
+
+      <IconButton onClick={onDeleteTodo}>
+        <DeleteIcon width="25" />
+      </IconButton>
+    </>
+  );
+};
 
 Todo.propTypes = {
   completed: PropTypes.bool,

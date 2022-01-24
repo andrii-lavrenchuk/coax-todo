@@ -16,6 +16,10 @@ export default class Form extends Component {
       toast.warn('Please, fill the field');
       return;
     }
+    if (value.length > 38) {
+      toast.error('Too much words!');
+      return;
+    }
 
     onSubmit(value.trim());
     this.resetForm();

@@ -13,3 +13,14 @@
 .cursorPointer {
   cursor: pointer;
 }
+
+.completed {
+  background: green;
+}
+
+.skipped {
+  background: red;
+}
+.initial {
+  background: transparent;
+}
