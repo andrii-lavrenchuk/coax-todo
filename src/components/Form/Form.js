@@ -1,17 +1,13 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
 import s from './Form.module.scss';
 
-export default class Form extends Component {
-  state = {
-    value: '',
-  };
+const Form = ({ onSubmit }) => {
+  const [value, setValue] = useState('');
 
-  handleSubmit = e => {
+  const handleSubmit = e => {
     e.preventDefault();
-    const { value } = this.state;
-    const { onSubmit } = this.props;
     if (value.trim() === '') {
       toast.warn('Please, fill the field');
       return;
@@ -20,40 +16,36 @@ export default class Form extends Component {
       toast.error('Too much words!');
       return;
     }
-
     onSubmit(value.trim().toLowerCase());
-    this.resetForm();
+    resetForm();
   };
 
-  hendleInputChange = e => {
+  const hendleInputChange = e => {
     const { value } = e.currentTarget;
-    this.setState({ value });
+    setValue(value);
   };
 
-  resetForm = () => {
-    this.setState({ value: '' });
+  const resetForm = () => {
+    setValue('');
   };
-
-  render() {
-    const { value } = this.state;
-
-    return (
-      <form className={s.todoForm} onSubmit={this.handleSubmit}>
-        <input
-          className={s.todoInput}
-          type="text"
-          onChange={this.hendleInputChange}
-          value={value}
-          placeholder="Write your task here"
-        />
-        <button className={s.addButton} type="submit">
-          Add
-        </button>
-      </form>
-    );
-  }
-}
+  return (
+    <form className={s.todoForm} onSubmit={handleSubmit}>
+      <input
+        className={s.todoInput}
+        type="text"
+        onChange={hendleInputChange}
+        value={value}
+        placeholder="Write your task here"
+      />
+      <button className={s.addButton} type="submit">
+        Add
+      </button>
+    </form>
+  );
+};
 
 Form.propTypes = {
   onSubmit: PropTypes.func,
 };
+
+export default Form;
