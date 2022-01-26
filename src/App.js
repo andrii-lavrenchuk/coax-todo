@@ -11,6 +11,7 @@ import DateRange from './components/DateRange/DateRange';
 class App extends Component {
   state = {
     todos: [],
+    isTaskAdded: false,
   };
 
   componentDidMount() {
@@ -21,15 +22,23 @@ class App extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { todos } = this.state;
+    const { todos, isTaskAdded } = this.state;
     if (this.state.todos !== prevState.todos) {
       localStorage.setItem('todos', JSON.stringify(todos));
+    }
+    if (isTaskAdded) {
+      toast.info('New task added');
+    }
+
+    if (prevState.todos.length > todos.length) {
+      toast.info('Task was deleted');
     }
   }
 
   deleteTodo = todoId => {
     this.setState(prevState => ({
       todos: prevState.todos.filter(todo => todo.id !== todoId),
+      isTaskAdded: false,
     }));
   };
 
@@ -48,6 +57,7 @@ class App extends Component {
     };
     this.setState(({ todos }) => ({
       todos: [...todos, newTodo],
+      isTaskAdded: true,
     }));
   };
 
@@ -62,6 +72,7 @@ class App extends Component {
             }
           : todo,
       ),
+      isTaskAdded: false,
     }));
   };
 
