@@ -15,7 +15,7 @@ const Form = () => {
   const addNewTask = e => {
     e.preventDefault();
 
-    const duplicateTodo = todos.some(todo => todo.text === value);
+    const duplicateTodo = todos.some(todo => todo.text === value.toLowerCase());
 
     if (duplicateTodo) {
       toast.error(`Todo with text '${value}' is already exist!`);
@@ -33,7 +33,7 @@ const Form = () => {
       return;
     }
 
-    addTodo(value);
+    addTodo(value.toLowerCase());
     toast.info('New todo was added');
     resetForm();
   };
