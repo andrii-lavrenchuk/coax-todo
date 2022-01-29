@@ -8,8 +8,6 @@ const TodoList = () => {
     todos: { todos },
   } = useContext(TodosContext);
 
-  localStorage.setItem('todos', JSON.stringify(todos));
-
   return todos.length === 0 ? (
     <p className={s.text}>Add your first task</p>
   ) : (

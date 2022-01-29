@@ -1,5 +1,7 @@
-import React, { useReducer, createContext } from 'react';
+import React, { useReducer, createContext, useEffect } from 'react';
 import todosReducer from './todosReducer';
+import { ADD_TODO, DELETE_TODO, TOGGLE_COMPLETED } from './actionTypes';
+
 export const TodosContext = createContext();
 
 const initialState = {
@@ -9,10 +11,14 @@ const initialState = {
 export const TodosProvider = ({ children }) => {
   const [todos, dispatch] = useReducer(todosReducer, initialState);
 
-  const addTodo = payload => dispatch({ type: 'add-todo', payload });
-  const deleteTodo = payload => dispatch({ type: 'delete-todo', payload });
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos.todos));
+  }, [todos.todos]);
+
+  const addTodo = payload => dispatch({ type: ADD_TODO, payload });
+  const deleteTodo = payload => dispatch({ type: DELETE_TODO, payload });
   const toogleCompleted = payload =>
-    dispatch({ type: 'toggle-completed', payload });
+    dispatch({ type: TOGGLE_COMPLETED, payload });
 
   return (
     <TodosContext.Provider

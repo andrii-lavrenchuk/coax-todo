@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { toast } from 'react-toastify';
 
 import { TodosContext } from '../../context/context';
@@ -6,14 +6,6 @@ import s from './Form.module.scss';
 
 const Form = () => {
   const [value, setValue] = useState('');
-  const [isTodoAdded, setIsTodoAdded] = useState(false);
-
-  useEffect(() => {
-    if (isTodoAdded) {
-      toast.info('New todo was added');
-    }
-    return setIsTodoAdded(false);
-  }, [isTodoAdded]);
 
   const {
     todos: { todos },
@@ -42,7 +34,7 @@ const Form = () => {
     }
 
     addTodo(value);
-    setIsTodoAdded(true);
+    toast.info('New todo was added');
     resetForm();
   };
 

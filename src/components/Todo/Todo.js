@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 import { useContext } from 'react';
 import classNames from 'classnames';
 import s from './Todo.module.scss';
+import { toast } from 'react-toastify';
+
 import IconButton from '../IconButton';
 import { ReactComponent as DeleteIcon } from '../../icons/trash.svg';
 import { ReactComponent as EmptyCheckbox } from '../../icons/emptyCheckbox.svg';
@@ -17,6 +19,11 @@ const Todo = ({ completed, text, skipped, id }) => {
   });
 
   const { deleteTodo, toogleCompleted } = useContext(TodosContext);
+
+  const onDeleteTodo = () => {
+    deleteTodo(id);
+    toast.info('Todo was deleted');
+  };
 
   return (
     <>
@@ -39,7 +46,7 @@ const Todo = ({ completed, text, skipped, id }) => {
       </label>
       <p className={s.todolistText}> {text}</p>
 
-      <IconButton onClick={() => deleteTodo(id)}>
+      <IconButton onClick={onDeleteTodo}>
         <DeleteIcon width="25" />
       </IconButton>
     </>
