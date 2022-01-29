@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/coax-todo/static/css/main.b36cb90c.css",
-    "main.js": "/coax-todo/static/js/main.bd082281.js",
+    "main.js": "/coax-todo/static/js/main.ffb9bbcb.js",
     "static/media/bgimage.jpg": "/coax-todo/static/media/bgimage.1dd11cb960a48af9b81c.jpg",
     "static/media/trash.svg": "/coax-todo/static/media/trash.69198939f167cac2411d41e5f95e4cb1.svg",
     "index.html": "/coax-todo/index.html",
@@ -9,10 +9,10 @@
     "static/media/completedCheckbox.svg": "/coax-todo/static/media/completedCheckbox.8ed95734e50a4fce1ab77847e46c355a.svg",
     "static/media/emptyCheckbox.svg": "/coax-todo/static/media/emptyCheckbox.0c5d22ed0d2e2162e6f68eea2c4ef370.svg",
     "main.b36cb90c.css.map": "/coax-todo/static/css/main.b36cb90c.css.map",
-    "main.bd082281.js.map": "/coax-todo/static/js/main.bd082281.js.map"
+    "main.ffb9bbcb.js.map": "/coax-todo/static/js/main.ffb9bbcb.js.map"
   },
   "entrypoints": [
     "static/css/main.b36cb90c.css",
-    "static/js/main.bd082281.js"
+    "static/js/main.ffb9bbcb.js"
   ]
 }
