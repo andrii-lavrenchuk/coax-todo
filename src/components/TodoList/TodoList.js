@@ -1,26 +1,24 @@
-import PropTypes from 'prop-types';
+import { useContext } from 'react';
 import s from './TodoList.module.scss';
-import Todo from '../Todo/Todo.js';
+import Todo from '../Todo';
+import { TodosContext } from '../../context/context';
 
-const TodoList = ({ todos, onDeleteTodo, onToggleCompleted }) => (
-  <ul className={s.todoList}>
-    {todos.map(({ id, text, completed, skipped }) => (
-      <li className={s.item} key={id}>
-        <Todo
-          text={text}
-          completed={completed}
-          skipped={skipped}
-          onToggleCompleted={() => onToggleCompleted(id)}
-          onDeleteTodo={() => onDeleteTodo(id)}
-        />
-      </li>
-    ))}
-  </ul>
-);
+const TodoList = () => {
+  const {
+    todos: { todos },
+  } = useContext(TodosContext);
 
-TodoList.propTypes = {
-  todos: PropTypes.arrayOf(PropTypes.object).isRequired,
-  onDeleteTodo: PropTypes.func,
-  onToggleCompleted: PropTypes.func,
+  return todos.length === 0 ? (
+    <p className={s.text}>Add your first task</p>
+  ) : (
+    <ul className={s.todoList}>
+      {todos.map(({ id, text, completed, skipped }) => (
+        <li className={s.item} key={id}>
+          <Todo id={id} text={text} completed={completed} skipped={skipped} />
+        </li>
+      ))}
+    </ul>
+  );
 };
+
 export default TodoList;

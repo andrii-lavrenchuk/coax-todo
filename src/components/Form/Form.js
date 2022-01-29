@@ -1,59 +1,65 @@
-import { Component } from 'react';
+import { useState, useContext } from 'react';
 import { toast } from 'react-toastify';
-import PropTypes from 'prop-types';
+
+import { TodosContext } from '../../context/context';
 import s from './Form.module.scss';
 
-export default class Form extends Component {
-  state = {
-    value: '',
-  };
+const Form = () => {
+  const [value, setValue] = useState('');
 
-  handleSubmit = e => {
+  const {
+    todos: { todos },
+    addTodo,
+  } = useContext(TodosContext);
+
+  const addNewTask = e => {
     e.preventDefault();
-    const { value } = this.state;
-    const { onSubmit } = this.props;
+
+    const duplicateTodo = todos.some(todo => todo.text === value);
+
+    if (duplicateTodo) {
+      toast.error(`Todo with text '${value}' is already exist!`);
+
+      return;
+    }
     if (value.trim() === '') {
       toast.warn('Please, fill the field');
+
       return;
     }
     if (value.length > 38) {
       toast.error('Too much words!');
+
       return;
     }
 
-    onSubmit(value.trim().toLowerCase());
-    this.resetForm();
+    addTodo(value);
+    toast.info('New todo was added');
+    resetForm();
   };
 
-  hendleInputChange = e => {
+  const hendleInputChange = e => {
     const { value } = e.currentTarget;
-    this.setState({ value });
+    setValue(value);
   };
 
-  resetForm = () => {
-    this.setState({ value: '' });
+  const resetForm = () => {
+    setValue('');
   };
-
-  render() {
-    const { value } = this.state;
-
-    return (
-      <form className={s.todoForm} onSubmit={this.handleSubmit}>
-        <input
-          className={s.todoInput}
-          type="text"
-          onChange={this.hendleInputChange}
-          value={value}
-          placeholder="Write your task here"
-        />
-        <button className={s.addButton} type="submit">
-          Add
-        </button>
-      </form>
-    );
-  }
-}
-
-Form.propTypes = {
-  onSubmit: PropTypes.func,
+  return (
+    <form className={s.todoForm} onSubmit={addNewTask}>
+      <input
+        className={s.todoInput}
+        type="text"
+        onChange={hendleInputChange}
+        value={value}
+        placeholder="Write your task here"
+      />
+      <button className={s.addButton} type="submit">
+        Add
+      </button>
+    </form>
+  );
 };
+
+export default Form;

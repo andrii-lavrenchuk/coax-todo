@@ -1,132 +1,33 @@
-import { Component } from 'react';
-import shortId from 'shortid';
-import { ToastContainer, Zoom, toast } from 'react-toastify';
+import { ToastContainer, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import TodoList from './components/TodoList/TodoList';
-import s from './App.module.scss';
-import Form from './components/Form/Form';
-import DateRange from './components/DateRange/DateRange';
+import TodoList from './components/TodoList';
+import Form from './components/Form';
+import CountTasks from './components/CountTasks';
+import DateRange from './components/DateRange';
+import Container from './components/Container';
+import TodoContainer from './components/TodoContainer';
 
-class App extends Component {
-  state = {
-    todos: [],
-    isTaskAdded: false,
-  };
+const App = () => {
+  return (
+    <>
+      <ToastContainer
+        autoClose={3000}
+        closeOnClick
+        theme="dark"
+        transition={Zoom}
+      />
+      <Container>
+        <CountTasks />
+        <TodoContainer>
+          <DateRange />
 
-  componentDidMount() {
-    const todos = JSON.parse(localStorage.getItem('todos'));
-    if (todos) {
-      this.setState({ todos });
-    }
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    const { todos, isTaskAdded } = this.state;
-    if (this.state.todos !== prevState.todos) {
-      localStorage.setItem('todos', JSON.stringify(todos));
-    }
-    if (isTaskAdded) {
-      toast.info('New task added');
-    }
-
-    if (prevState.todos.length > todos.length) {
-      toast.info('Task was deleted');
-    }
-  }
-
-  deleteTodo = todoId => {
-    this.setState(prevState => ({
-      todos: prevState.todos.filter(todo => todo.id !== todoId),
-      isTaskAdded: false,
-    }));
-  };
-
-  addTodo = text => {
-    const duplicateTodo = this.state.todos.some(todo => todo.text === text);
-    if (duplicateTodo) {
-      toast.error(`Todo with text '${text}' is already exist!`);
-      return;
-    }
-
-    const newTodo = {
-      id: shortId.generate(),
-      text,
-      completed: false,
-      skipped: false,
-    };
-    this.setState(({ todos }) => ({
-      todos: [...todos, newTodo],
-      isTaskAdded: true,
-    }));
-  };
-
-  toggleCompleted = todoId => {
-    this.setState(({ todos }) => ({
-      todos: todos.map(todo =>
-        todo.id === todoId
-          ? {
-              ...todo,
-              completed: !todo.completed,
-              skipped: todo.completed,
-            }
-          : todo,
-      ),
-      isTaskAdded: false,
-    }));
-  };
-
-  completedTodoCount = () => {
-    const { todos } = this.state;
-    return todos.reduce(
-      (total, { completed }) => (completed ? total + 1 : total),
-      0,
-    );
-  };
-
-  skippedTodoCount = () => {
-    const { todos } = this.state;
-    return todos.reduce(
-      (total, { skipped }) => (skipped ? total + 1 : total),
-      0,
-    );
-  };
-
-  render() {
-    const { todos } = this.state;
-    const completedTodosCount = this.completedTodoCount();
-    const skippedTodosCount = this.skippedTodoCount();
-
-    return (
-      <>
-        <ToastContainer
-          autoClose={3000}
-          closeOnClick
-          theme="dark"
-          transition={Zoom}
-        />
-        <div className={s.container}>
-          <p className={s.text}>All tasks: {todos.length} </p>
-          <p className={s.text}>Completed tasks: {completedTodosCount}</p>
-          <p className={s.text}>Skipped tasks: {skippedTodosCount}</p>
-
-          <div className={s.todoContainer}>
-            <DateRange />
-            {todos.length === 0 ? (
-              <p className={s.text}>Add your first task</p>
-            ) : (
-              <TodoList
-                todos={todos}
-                onDeleteTodo={this.deleteTodo}
-                onToggleCompleted={this.toggleCompleted}
-              />
-            )}
-          </div>
-          <Form onSubmit={this.addTodo} />
-        </div>
-      </>
-    );
-  }
-}
+          <TodoList />
+        </TodoContainer>
+        <Form />
+      </Container>
+    </>
+  );
+};
 
 export default App;

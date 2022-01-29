@@ -2,23 +2,3 @@ p {
   margin: 0;
   padding: 0;
 }
-
-.container {
-  margin-left: auto;
-  margin-right: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-image: url('./images/bgimage.jpg');
-  background-repeat: repeat-y;
-  background-position: center;
-  .text {
-    font-size: 18px;
-    color: #fff;
-    margin-top: 25px;
-  }
-  .todoContainer {
-    padding-top: 150px;
-    padding-bottom: 50px;
-  }
-}
