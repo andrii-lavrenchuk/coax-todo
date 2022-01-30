@@ -1,4 +1,5 @@
 import { createStore } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import shortId from 'shortid';
 
 import { ADD_TODO, DELETE_TODO, TOGGLE_COMPLETED } from './actionTypes';
@@ -43,5 +44,5 @@ const todosReducer = (state = initialState, action) => {
   }
 };
 
-const store = createStore(todosReducer);
+const store = createStore(todosReducer, composeWithDevTools());
 export default store;
