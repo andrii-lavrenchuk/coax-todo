@@ -38,7 +38,7 @@ const Form = () => {
     resetForm();
   };
 
-  const hendleInputChange = e => {
+  const handleInputChange = e => {
     const { value } = e.currentTarget;
     setValue(value);
   };
@@ -51,7 +51,7 @@ const Form = () => {
       <input
         className={s.todoInput}
         type="text"
-        onChange={hendleInputChange}
+        onChange={handleInputChange}
         value={value}
         placeholder="Write your task here"
       />

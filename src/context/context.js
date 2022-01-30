@@ -17,12 +17,12 @@ export const TodosProvider = ({ children }) => {
 
   const addTodo = payload => dispatch({ type: ADD_TODO, payload });
   const deleteTodo = payload => dispatch({ type: DELETE_TODO, payload });
-  const toogleCompleted = payload =>
+  const toggleCompleted = payload =>
     dispatch({ type: TOGGLE_COMPLETED, payload });
 
   return (
     <TodosContext.Provider
-      value={{ todos, addTodo, deleteTodo, toogleCompleted }}
+      value={{ todos, addTodo, deleteTodo, toggleCompleted }}
     >
       {children}
     </TodosContext.Provider>

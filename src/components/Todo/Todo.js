@@ -18,7 +18,7 @@ const Todo = ({ completed, text, skipped, id }) => {
     [s.initial]: !skipped && !completed,
   });
 
-  const { deleteTodo, toogleCompleted } = useContext(TodosContext);
+  const { deleteTodo, toggleCompleted } = useContext(TodosContext);
 
   const onDeleteTodo = () => {
     deleteTodo(id);
@@ -32,7 +32,7 @@ const Todo = ({ completed, text, skipped, id }) => {
           className={s.input}
           type="checkbox"
           checked={completed}
-          onChange={() => toogleCompleted(id)}
+          onChange={() => toggleCompleted(id)}
         />
 
         {!completed && !skipped && (
@@ -44,7 +44,7 @@ const Todo = ({ completed, text, skipped, id }) => {
           <SkippedCheckbox className={classes} width="30" />
         )}
       </label>
-      <p className={s.todolistText}> {text}</p>
+      <p className={s.todoListText}> {text}</p>
 
       <IconButton onClick={onDeleteTodo}>
         <DeleteIcon width="25" />
