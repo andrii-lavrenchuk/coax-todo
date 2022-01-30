@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/coax-todo/static/css/main.b36cb90c.css",
-    "main.js": "/coax-todo/static/js/main.ffb9bbcb.js",
+    "main.css": "/coax-todo/static/css/main.7707abaf.css",
+    "main.js": "/coax-todo/static/js/main.ebad2def.js",
     "static/media/bgimage.jpg": "/coax-todo/static/media/bgimage.1dd11cb960a48af9b81c.jpg",
-    "static/media/trash.svg": "/coax-todo/static/media/trash.69198939f167cac2411d41e5f95e4cb1.svg",
+    "static/media/trash.svg": "/coax-todo/static/media/trash.f930e714e21024c488bf24715f90dea3.svg",
     "index.html": "/coax-todo/index.html",
-    "static/media/skippedCheckbox.svg": "/coax-todo/static/media/skippedCheckbox.2041d3e3729615226de8a2193e46ff36.svg",
-    "static/media/completedCheckbox.svg": "/coax-todo/static/media/completedCheckbox.8ed95734e50a4fce1ab77847e46c355a.svg",
-    "static/media/emptyCheckbox.svg": "/coax-todo/static/media/emptyCheckbox.0c5d22ed0d2e2162e6f68eea2c4ef370.svg",
-    "main.b36cb90c.css.map": "/coax-todo/static/css/main.b36cb90c.css.map",
-    "main.ffb9bbcb.js.map": "/coax-todo/static/js/main.ffb9bbcb.js.map"
+    "static/media/skippedCheckbox.svg": "/coax-todo/static/media/skippedCheckbox.4bb1c4ef1d5dbdc35aeeba74715e8fdb.svg",
+    "static/media/completedCheckbox.svg": "/coax-todo/static/media/completedCheckbox.ff71b621442d63a4855bbcc6c951fab1.svg",
+    "static/media/emptyCheckbox.svg": "/coax-todo/static/media/emptyCheckbox.f948ae1b6d76a8ea834ee8fd32317ce3.svg",
+    "main.7707abaf.css.map": "/coax-todo/static/css/main.7707abaf.css.map",
+    "main.ebad2def.js.map": "/coax-todo/static/js/main.ebad2def.js.map"
   },
   "entrypoints": [
-    "static/css/main.b36cb90c.css",
-    "static/js/main.ffb9bbcb.js"
+    "static/css/main.7707abaf.css",
+    "static/js/main.ebad2def.js"
   ]
 }
