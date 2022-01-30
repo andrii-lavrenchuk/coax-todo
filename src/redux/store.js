@@ -1,48 +1,10 @@
 import { createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import shortId from 'shortid';
 
-import { ADD_TODO, DELETE_TODO, TOGGLE_COMPLETED } from './actionTypes';
+import { loadState } from './todos/local-storage/localStorage';
+import todosReducer from './todos/todos-reducer';
 
-const initialState = [];
+const persistedState = loadState();
 
-const todosReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case ADD_TODO:
-      const newTodo = {
-        id: shortId.generate(),
-        text: action.payload,
-        completed: false,
-        skipped: false,
-      };
-
-      return {
-        ...state,
-        todos: [...state.todos, newTodo],
-      };
-    case DELETE_TODO:
-      const todos = state.todos.filter(todo => todo.id !== action.payload);
-      return {
-        ...state,
-        todos,
-      };
-    case TOGGLE_COMPLETED:
-      return {
-        todos: state.todos.map(todo =>
-          todo.id === action.payload
-            ? {
-                ...todo,
-                completed: !todo.completed,
-                skipped: todo.completed,
-              }
-            : todo,
-        ),
-      };
-
-    default:
-      return state;
-  }
-};
-
-const store = createStore(todosReducer, composeWithDevTools());
+const store = createStore(todosReducer, persistedState, composeWithDevTools());
 export default store;

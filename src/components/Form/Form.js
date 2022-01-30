@@ -1,17 +1,14 @@
-import { useState, useContext } from 'react';
+import { useState } from 'react';
+import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
+import PropTypes from 'prop-types';
 
-import { TodosContext } from '../../context/context';
+import todosActions from '../../redux/todos/todos-actions';
 
 import s from './Form.module.scss';
 
-const Form = () => {
+const Form = ({ todos, onSubmit }) => {
   const [value, setValue] = useState('');
-
-  const {
-    todos: { todos },
-    addTodo,
-  } = useContext(TodosContext);
 
   const addNewTask = e => {
     e.preventDefault();
@@ -34,7 +31,7 @@ const Form = () => {
       return;
     }
 
-    addTodo(value.toLowerCase());
+    onSubmit(value.toLowerCase());
     toast.info('New todo was added');
     resetForm();
   };
@@ -63,4 +60,16 @@ const Form = () => {
   );
 };
 
-export default Form;
+const mapStateToProps = state => ({
+  todos: state.todos,
+});
+const mapDispatchToProps = dispatch => ({
+  onSubmit: text => dispatch(todosActions.addTodo(text)),
+});
+
+Form.propTypes = {
+  todos: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onSubmit: PropTypes.func.isRequired,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Form);
