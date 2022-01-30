@@ -1,4 +1,5 @@
 import makeDateRange from '../../utils/getDate';
+
 import s from './DateRange.module.scss';
 
 const DateRange = () => {

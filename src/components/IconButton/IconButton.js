@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+
 import s from './IconButton.module.scss';
 
 const IconButton = ({ children, onClick }) => (

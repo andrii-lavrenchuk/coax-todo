@@ -1,7 +1,9 @@
 import { useContext } from 'react';
-import s from './TodoList.module.scss';
-import Todo from '../Todo';
+
 import { TodosContext } from '../../context/context';
+import Todo from '../Todo';
+
+import s from './TodoList.module.scss';
 
 const TodoList = () => {
   const {

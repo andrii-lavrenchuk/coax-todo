@@ -1,15 +1,16 @@
 import PropTypes from 'prop-types';
 import { useContext } from 'react';
 import classNames from 'classnames';
-import s from './Todo.module.scss';
 import { toast } from 'react-toastify';
 
+import { TodosContext } from '../../context/context';
 import IconButton from '../IconButton';
 import { ReactComponent as DeleteIcon } from '../../icons/trash.svg';
 import { ReactComponent as EmptyCheckbox } from '../../icons/emptyCheckbox.svg';
 import { ReactComponent as CompletedCheckbox } from '../../icons/completedCheckbox.svg';
 import { ReactComponent as SkippedCheckbox } from '../../icons/skippedCheckbox.svg';
-import { TodosContext } from '../../context/context';
+
+import s from './Todo.module.scss';
 
 const Todo = ({ completed, text, skipped, id }) => {
   const classes = classNames(s.cursorPointer, {

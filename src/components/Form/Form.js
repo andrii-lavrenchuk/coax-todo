@@ -2,6 +2,7 @@ import { useState, useContext } from 'react';
 import { toast } from 'react-toastify';
 
 import { TodosContext } from '../../context/context';
+
 import s from './Form.module.scss';
 
 const Form = () => {
