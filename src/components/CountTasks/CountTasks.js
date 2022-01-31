@@ -1,13 +1,8 @@
-import { useContext } from 'react';
-import { TodosContext } from '../../context/context';
+import { connect } from 'react-redux';
 
 import s from './CountTasks.module.scss';
 
-const CountTasks = () => {
-  const {
-    todos: { todos },
-  } = useContext(TodosContext);
-
+const CountTasks = ({ todos }) => {
   const completedTodoCount = () =>
     todos.reduce((total, { completed }) => (completed ? total + 1 : total), 0);
 
@@ -23,4 +18,8 @@ const CountTasks = () => {
   );
 };
 
-export default CountTasks;
+const mapStateToProps = state => ({
+  todos: state.todos,
+});
+
+export default connect(mapStateToProps)(CountTasks);

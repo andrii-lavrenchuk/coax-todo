@@ -1,7 +1,5 @@
 import PropTypes from 'prop-types';
-import { useContext } from 'react';
 import classNames from 'classnames';
-import s from './Todo.module.scss';
 import { toast } from 'react-toastify';
 
 import IconButton from '../IconButton';
@@ -9,19 +7,24 @@ import { ReactComponent as DeleteIcon } from '../../icons/trash.svg';
 import { ReactComponent as EmptyCheckbox } from '../../icons/emptyCheckbox.svg';
 import { ReactComponent as CompletedCheckbox } from '../../icons/completedCheckbox.svg';
 import { ReactComponent as SkippedCheckbox } from '../../icons/skippedCheckbox.svg';
-import { TodosContext } from '../../context/context';
 
-const Todo = ({ completed, text, skipped, id }) => {
+import s from './Todo.module.scss';
+
+const Todo = ({
+  completed,
+  text,
+  skipped,
+  onDeleteTodo,
+  onToggleCompleted,
+}) => {
   const classes = classNames(s.cursorPointer, {
     [s.completed]: completed,
     [s.skipped]: !completed,
     [s.initial]: !skipped && !completed,
   });
 
-  const { deleteTodo, toggleCompleted } = useContext(TodosContext);
-
-  const onDeleteTodo = () => {
-    deleteTodo(id);
+  const deleteTodo = () => {
+    onDeleteTodo();
     toast.info('Todo was deleted');
   };
 
@@ -32,7 +35,7 @@ const Todo = ({ completed, text, skipped, id }) => {
           className={s.input}
           type="checkbox"
           checked={completed}
-          onChange={() => toggleCompleted(id)}
+          onChange={onToggleCompleted}
         />
 
         {!completed && !skipped && (
@@ -46,7 +49,7 @@ const Todo = ({ completed, text, skipped, id }) => {
       </label>
       <p className={s.todoListText}> {text}</p>
 
-      <IconButton onClick={onDeleteTodo}>
+      <IconButton onClick={deleteTodo}>
         <DeleteIcon width="25" />
       </IconButton>
     </>
@@ -57,6 +60,8 @@ Todo.propTypes = {
   completed: PropTypes.bool,
   text: PropTypes.string,
   skipped: PropTypes.bool,
+  onDeleteTodo: PropTypes.func,
+  onToggleCompleted: PropTypes.func,
 };
 
 export default Todo;

@@ -1,5 +1,4 @@
 import { ToastContainer, Zoom } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 import TodoList from './components/TodoList';
 import Form from './components/Form';
@@ -7,6 +6,8 @@ import CountTasks from './components/CountTasks';
 import DateRange from './components/DateRange';
 import Container from './components/Container';
 import TodoContainer from './components/TodoContainer';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   return (
